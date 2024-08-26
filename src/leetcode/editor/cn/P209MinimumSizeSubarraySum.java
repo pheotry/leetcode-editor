@@ -63,7 +63,30 @@ public class P209MinimumSizeSubarraySum {
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int minSubArrayLen(int target, int[] nums) {
-        return 0;
+        return doublePointer(target, nums);
+    }
+
+    /**
+     * 使用滑动窗口，遍历一遍数组，如果当前的和>=target，收缩窗口，更新窗口大小
+     * @param target
+     * @param nums
+     * @return
+     */
+    public int doublePointer(int target, int[] nums) {
+        int len = nums.length;
+        int ans = len + 1;
+        int sum = 0;
+        int left = 0;
+        for (int right = 0; right < len; right++) {
+            sum = sum + nums[right];
+            // 收缩窗口
+            while (sum - nums[left] >= target)
+                sum -= nums[left++];
+            // 更新长度
+            if (sum >= target)
+                ans = Math.min(ans, right - left + 1);
+        }
+        return ans <= len ? ans : 0;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
