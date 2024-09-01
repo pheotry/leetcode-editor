@@ -46,6 +46,8 @@ public class P279PerfectSquares {
 // leetcode submit region begin(Prohibit modification and deletion)
 
     /**
+     * {@link P322CoinChange}
+     *
      * 把完全平方数当作是物品（不限个数），n为背包容量，那么问题转化为把背包装满需要的物品最少数量
      * dp[j]表示装满容量为j的背包需要的最少物品数量为dp[j]
      * dp[j]=min(dp[j-i*i]+1, dp[j]), 对于物品i，可以选择或不选择
