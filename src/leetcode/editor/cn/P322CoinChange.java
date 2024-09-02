@@ -50,7 +50,7 @@ public class P322CoinChange {
     public static void main(String[] args) {
         Solution solution = new P322CoinChange().new Solution();
         System.out.println(solution.coinChange(new int[]{1, 2, 5}, 11));
-        System.out.println(solution.coinChange(new int[]{474,83,404,3}, 264));
+        System.out.println(solution.coinChange(new int[]{474,83,404,3}, 2640));
     }
 
 // leetcode submit region begin(Prohibit modification and deletion)
@@ -59,8 +59,8 @@ public class P322CoinChange {
      * 类似于 {@link P279PerfectSquares} 完全平方数
      * 硬币表示物品，amount表示背包容量，那么问题转换为完全背包问题
      * dp[j]表示装满容量为j的背包需要的最少硬币个数
-     * dp[j]=min(dp[j-i]+1, dp[j]): 需要硬币i或不需要硬币i
-     * 初始化：dp[0]=0
+     * dp[j]=min(dp[j-coins[i]]+1, dp[j]): 需要硬币i或不需要硬币i
+     * 初始化：dp[0]=0, 非0下标初始化为 amount+1
      * 遍历顺序：先背包后物品，或先物品后背包
      * <p>
      * 最差无非是amount全由硬币1组成，此时硬币数量最多为amount
