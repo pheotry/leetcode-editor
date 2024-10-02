@@ -54,22 +54,25 @@ public class P104MaximumDepthOfBinaryTree {
 
 // leetcode submit region begin(Prohibit modification and deletion)
 
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode() {}
+ * TreeNode(int val) { this.val = val; }
+ * TreeNode(int val, TreeNode left, TreeNode right) {
+ * this.val = val;
+ * this.left = left;
+ * this.right = right;
+ * }
+ * }
+ */
     /**
-     * Definition for a binary tree node.
-     * public class TreeNode {
-     * int val;
-     * TreeNode left;
-     * TreeNode right;
-     * TreeNode() {}
-     * TreeNode(int val) { this.val = val; }
-     * TreeNode(int val, TreeNode left, TreeNode right) {
-     * this.val = val;
-     * this.left = left;
-     * this.right = right;
-     * }
-     * }
+     * 层序遍历 BFS
      */
-    class Solution {
+    class Solution1 {
         public int maxDepth(TreeNode root) {
             Queue<TreeNode> queue = new LinkedList<>();
             int res = 0;
@@ -87,6 +90,20 @@ public class P104MaximumDepthOfBinaryTree {
                 res++;
             }
             return res;
+        }
+    }
+
+    /**
+     * DFS: 后序遍历
+     * 求深度应该用后序遍历，高度就是最大深度
+     */
+    class Solution {
+        public int maxDepth(TreeNode root) {
+            if (root == null)
+                return 0;
+            int leftDepth = maxDepth(root.left);
+            int rightDepth = maxDepth(root.right);
+            return Math.max(leftDepth, rightDepth) + 1;
         }
     }
 // leetcode submit region end(Prohibit modification and deletion)

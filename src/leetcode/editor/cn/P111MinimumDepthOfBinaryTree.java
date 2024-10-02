@@ -68,7 +68,7 @@ public class P111MinimumDepthOfBinaryTree {
      * 层序遍历
      * {@link P104MaximumDepthOfBinaryTree} 二叉树的最大深度
      */
-    class Solution {
+    class Solution1 {
         public int minDepth(TreeNode root) {
             Queue<TreeNode> queue = new LinkedList<>();
             int res = 0;
@@ -87,6 +87,22 @@ public class P111MinimumDepthOfBinaryTree {
                 res++;
             }
             return res;
+        }
+    }
+
+    /**
+     * DFS
+     */
+    class Solution {
+        public int minDepth(TreeNode root) {
+            if (root == null)
+                return 0;
+            int left = minDepth(root.left);
+            int right = minDepth(root.right);
+            // 存在一棵子树或是叶节点的情况
+            if (left == 0 || right == 0)
+                return left + right + 1;
+            return Math.min(left, right) + 1;
         }
     }
 // leetcode submit region end(Prohibit modification and deletion)
